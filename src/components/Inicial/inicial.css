@@ -186,8 +186,8 @@
 
   .formContato{
     padding-left: 9%;
-    padding-right: 14%;
-    padding-bottom: 8%;
+    padding-right: 18%;
+    padding-bottom: 3%;
     padding-top: 8%;
     background-color: ghostwhite;
   }
@@ -201,26 +201,45 @@
 
   .formularioContato{
     margin-right: 5%;
-    
   }
+
+
 
   .formularioContato form{
     display: flex;
-    width: 120%;
+    width: 130%;
     flex-direction: column;
     border: #ff8c00 1px solid;
-    padding: 8%;
-    
+    padding: 10%;
+
     
   }
-  .formularioContato form input{
+  .inputForm{
     width: 90%;
     padding: 4%;
+    border: #ff8c00 solid 1px;
+    background-color: white;
   }
+
+  .formularioContato form label{
+    color: #ff8c00;
+    font-size: 100%;
+    font-weight: 500;
+  }
+
+
   .titleForm{
     text-align: center;
     font-size: 120%;
     color: #ff8c00;
+  }
+
+  .btnSubmit{
+    background-color: #ff8c00;
+    border: none;
+    color: white;
+    margin-top: 3%;
+    padding: 5%;
   }
 
   .descriptionForm{
@@ -229,11 +248,23 @@
     font-weight: 450;
     color: gray;
   }
-
+  .timeline-textos{
+    display: flex;
+    flex-direction: column;
+    gap: 14%;
+  }
+  .timeTexto{
+    width: 70%;
+    padding-left: 3%;
+  }
+  .timeTexto p{
+    font-size: 80%;
+    color: gray;
+  }
   .timeline-container {
     display: flex;
     height: 80%;
-    padding-top: 6%;
+    padding-top: 5%;
   }
   
   .timeline {
@@ -252,13 +283,13 @@
     align-items: center;
     font-size: 18px;
     position: relative;
-    margin-bottom: 260%;
+    margin-bottom: 320%;
   }
   
   .timeline-item:not(:last-child)::after {
     content: '';
     width: 2px;
-    height: calc(9% + 100px); /* 3% de espaço mais a altura do item */
+    height: calc(9% + 110px); /* 3% de espaço mais a altura do item */
     background-color: #ff8c00;
     position: absolute;
     top: 100%;

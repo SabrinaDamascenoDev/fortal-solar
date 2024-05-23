@@ -21,29 +21,31 @@ function Inicial() {
   };
 
   const handleForm = async (event) => {
-    event.preventDefault(); // Mover para o início da função para prevenir comportamento padrão antes do envio
+    event.preventDefault();
     try {
-      const response = await fetch('https://emailleadfortalsolar-production.up.railway.app', {
+      // Formatar os dados do formulário conforme necessário
+      const formDataString = `{"dadosCliente": "nome: ${formData.name}\\n email: ${formData.email}\\n telefone: ${formData.telefone}\\n cidade: ${formData.cidade}\\n Conta de energia: ${formData.energia}"}`;
+  
+      // Enviar os dados para a API
+      const response = await fetch('https://emailleadfortalsolar-production.up.railway.app/envia-email/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          dadosCliente: JSON.stringify(formData),
-        }),
+        body: formDataString,
       });
+  
+      // Verificar se a solicitação foi bem-sucedida
       if (response.ok) {
-        // Se a resposta for bem-sucedida, você pode fazer algo aqui, como exibir uma mensagem de sucesso
         console.log('Formulário enviado com sucesso!');
       } else {
-        // Se a resposta não for bem-sucedida, você pode lidar com o erro aqui
         console.error('Erro ao enviar o formulário');
       }
     } catch (error) {
-      // Lidar com erros de rede ou outros erros
       console.error('Erro de rede ou outro erro:', error);
     }
   };
+  
 
   const [porcentagem, setPorcentagem] = useState(0);
 
@@ -145,6 +147,24 @@ function Inicial() {
                 <div className="timeline-item">3</div>
                 <div className="timeline-item">4</div>
               </div>
+              <div className="timeline-textos">
+                <div className="timeTexto">
+                  <h3>Simulação Financeira</h3>
+                  <p>Preencha o Formulário e requisite seu orçamento</p>
+                </div>
+                <div className="timeTexto">
+                  <h3>Avalie Nossa Proposta</h3>
+                  <p>Nossos Especialistas vão analisar o seu caso e oferecer as melhores propostas para suprir suas necessidades.</p>
+                </div>
+                <div className="timeTexto">
+                  <h3>Fechamento do Negócio</h3>
+                  <p>Vamos disponibilizar as melhores formas de pagamentos com prazos e valores que se adequam a sua realidade.</p>
+                </div>
+                <div className="timeTexto">
+                  <h3>Agora é Conosco</h3>
+                  <p>Agora é só aguardar que faremos a instalação do seu Projeto e a ligação junto a distribuidora.</p>
+                </div>
+              </div>
             </div>
           </div>
           <div className="formularioContato">
@@ -156,6 +176,7 @@ function Inicial() {
                 required
                 value={formData.name}
                 onChange={(e) => handleFormEdit(e, 'name')}
+                className="inputForm"
               />
               <label>Email*</label>
               <input
@@ -164,6 +185,7 @@ function Inicial() {
                 required
                 value={formData.email}
                 onChange={(e) => handleFormEdit(e, 'email')}
+                className="inputForm"
               />
               <label>Telefone*</label>
               <input
@@ -172,6 +194,7 @@ function Inicial() {
                 required
                 value={formData.telefone}
                 onChange={(e) => handleFormEdit(e, 'telefone')}
+                className="inputForm"
               />
               <label>Cidade*</label>
               <input
@@ -180,6 +203,7 @@ function Inicial() {
                 required
                 value={formData.cidade}
                 onChange={(e) => handleFormEdit(e, 'cidade')}
+                className="inputForm"
               />
               <label>Valor da Conta de Energia Elétrica*</label>
               <input
@@ -188,8 +212,9 @@ function Inicial() {
                 required
                 value={formData.energia}
                 onChange={(e) => handleFormEdit(e, 'energia')}
+                className="inputForm"
               />
-              <input type="submit" value="Enviar" />
+              <input type="submit" value="Enviar"  className="btnSubmit" />
             </form>
           </div>
         </div>
