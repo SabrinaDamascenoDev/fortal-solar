@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+}
+
+.contactHeader{
+    background-color: ghostwhite;
+    width: 92%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 15;
+    padding-left: 8%;
+    padding-top: 10px;
+   
+}
+.iconsInicias{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    list-style: none;
+    padding-right: 8%;
+    gap: 10px;
+
+}
+
+.contactHeader p {
+    color: gray;
+    font-weight: 200;
+    
+}
+
+.iconHeader{
+    color: gainsboro;
+}
+
+.iconHeader:hover{
+    color: #ff8c00;
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.headHeader{
+    display: flex;
+    flex-direction: row;
+    padding-left: 8%;
+    justify-content: space-between;
+    border-bottom: 0.1px solid gainsboro;
+}
+.inforHeader{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 500;
+}
+.inforsHeader{
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    padding-right: 8%;
+    padding-top: 3%;
+}
+
+.logoHeader{
+    width: 29%;
+}
+.menuOficial{
+    padding-left: 8%;
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding-top: 1.5%;
+    font-weight: 450;
+}
+
+.menuOficial li:hover{
+    color: #ff8c00;
+    cursor: pointer;
+    transition: 0.3s;  
+    
+}
+
+.underline{
+    text-decoration: underline;
+    color:#ff8c00;
+    text-underline-offset: 5px;
+}
