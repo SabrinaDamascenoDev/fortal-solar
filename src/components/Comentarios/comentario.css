@@ -1,0 +1,38 @@
+.estrelas{
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+}
+
+.comentario{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px; /* Ajuste a altura conforme necessário */
+  background-color: transparent;
+  border:none;
+  color: black;
+  text-align: center;
+ 
+
+}
+
+.comentarios{
+  border: 2px solid #ff8c00;
+}
+
+
+
+
+.slick-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.next {
+  right: 10px;
+}
+
+.prev {
+  left: 10px;
+}

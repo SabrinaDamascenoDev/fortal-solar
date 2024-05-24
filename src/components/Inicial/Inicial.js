@@ -1,16 +1,52 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./inicial.css";
 import Header from "../Header/Header";
 import { ReactTyped as Typed } from "react-typed";
 import fotoAbout02 from "../../images/fotoabout03.jpg";
+import Porcentagem from "../porcentagem/porcentagem";
+import renovavelImage from "../../images/renovavel.jpg";
+import Comentario from "../Comentarios/Comentario";
 
 function Inicial() {
+  //scroll efecct
+  const elementsRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          entry.target.classList.remove("hidden");
+        } else {
+          entry.target.classList.remove("show");
+          entry.target.classList.add("hidden");
+        }
+      });
+    });
+    
+
+    const currentElements = elementsRef.current;
+
+    currentElements.forEach((el) => {
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      currentElements.forEach((el) => {
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
+  
+ 
+  //enviar para a api
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    telefone: '',
-    cidade: '',
-    energia: '',
+    name: "",
+    email: "",
+    telefone: "",
+    cidade: "",
+    energia: "",
   });
 
   const handleFormEdit = (event, name) => {
@@ -23,33 +59,61 @@ function Inicial() {
   const handleForm = async (event) => {
     event.preventDefault();
     try {
-      // Formatar os dados do formulário conforme necessário
       const formDataString = `{"dadosCliente": "nome: ${formData.name}\\n email: ${formData.email}\\n telefone: ${formData.telefone}\\n cidade: ${formData.cidade}\\n Conta de energia: ${formData.energia}"}`;
-  
+
       // Enviar os dados para a API
-      const response = await fetch('https://emailleadfortalsolar-production.up.railway.app/envia-email/lead', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: formDataString,
-      });
-  
+      const response = await fetch(
+        "https://emailleadfortalsolar-production.up.railway.app/envia-email/lead",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: formDataString,
+        }
+      );
+
       // Verificar se a solicitação foi bem-sucedida
       if (response.ok) {
-        console.log('Formulário enviado com sucesso!');
+        console.log("Formulário enviado com sucesso!");
       } else {
-        console.error('Erro ao enviar o formulário');
+        console.error("Erro ao enviar o formulário");
       }
     } catch (error) {
-      console.error('Erro de rede ou outro erro:', error);
+      console.error("Erro de rede ou outro erro:", error);
     }
   };
-  
 
   const [porcentagem, setPorcentagem] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const ref = useRef(null);
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 } // Configura a porcentagem de visibilidade necessária para ativar o evento
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
     const targetPorcentagem = 100; // Número total de projetos
     const interval = setInterval(() => {
       setPorcentagem((prevCounter) => {
@@ -60,13 +124,14 @@ function Inicial() {
           return targetPorcentagem;
         }
       });
-    }, 100); // Ajuste a velocidade da contagem conforme necessário
+    }, 50); // Ajuste a velocidade da contagem conforme necessário
 
     return () => clearInterval(interval); // Limpa o intervalo quando o componente é desmontado
-  }, []);
+  }, [isVisible]);
+
 
   return (
-    <div className="inicial">
+    <div className="inicial hidden" ref={(el) => elementsRef.current.push(el)}>
       <Header />
       <div className="container">
         <div className="inicio">
@@ -91,7 +156,10 @@ function Inicial() {
       </div>
       {/* Sobre a empresa */}
       <div className="aboutInicio">
-        <div className="aboutDescription">
+        <div
+          className="aboutDescription hidden"
+          ref={(el) => elementsRef.current.push(el)}
+        >
           <p className="beforeTitleAbout">Sobre a empresa</p>
           <p className="titleAbout">
             Nós estamos contruindo seu <strong>Futuro</strong>
@@ -101,8 +169,8 @@ function Inicial() {
             atividades na implantação de sistemas completos de energia solar
             buscando soluções inteligentes e sustentáveis na economia de energia
             elétrica obtendo assim para seus clientes um bom retorno financeiro.
-          </p>
-          <p className="aboutCompany">
+            <br></br>
+            <br></br>
             Trabalhamos com os melhores produtos que existem no mercado de
             energia solar nossa equipe é composta por profissionais
             especializados no ramo, desenvolvemos sistemas para residências
@@ -110,23 +178,41 @@ function Inicial() {
           </p>
           <button className="botaoStyleAbout">Saiba mais</button>
         </div>
-        <div className="aboutFotos">
+        <div
+          className="aboutFotos hidden"
+          ref={(el) => elementsRef.current.push(el)}
+        >
           <img src={fotoAbout02} alt="foto02" className="fotoAbout02" />
         </div>
       </div>
       {/* INFORMAÇOES MARCANTES SOBRE A EMPRESA */}
       <div className="informacoesMarcantes">
-        <div className="cardInfor">
+        <div
+          className="cardInfor hidden"
+          ref={(el) => elementsRef.current.push(el)}
+        >
           <h4>+1000</h4>
           <p>Projetos</p>
         </div>
-        <div className="cardInfor">
+        <div
+          className="cardInfor hidden"
+          ref={(el) => elementsRef.current.push(el)}
+        >
           <h4>+6</h4>
           <p>Anos no Mercado</p>
         </div>
-        <div className="cardInfor">
+        <div
+          className="cardInfor hidden"
+          ref={(el) => elementsRef.current.push(el)}
+          
+        >
+          <div ref={ref}>
+          {isVisible && ( 
           <h4>{porcentagem}%</h4>
-          <p>Clientes Satisfeitos</p>
+            )}
+          </div>  
+          
+          <p>Clientes Satifeitos</p>
         </div>
       </div>
       {/* FORMULARIO DE CONTATO */}
@@ -148,34 +234,60 @@ function Inicial() {
                 <div className="timeline-item">4</div>
               </div>
               <div className="timeline-textos">
-                <div className="timeTexto">
+                <div
+                  className="timeTexto hidden"
+                  ref={(el) => elementsRef.current.push(el)}
+                >
                   <h3>Simulação Financeira</h3>
                   <p>Preencha o Formulário e requisite seu orçamento</p>
                 </div>
-                <div className="timeTexto">
+                <div
+                  className="timeTexto hidden"
+                  ref={(el) => elementsRef.current.push(el)}
+                >
                   <h3>Avalie Nossa Proposta</h3>
-                  <p>Nossos Especialistas vão analisar o seu caso e oferecer as melhores propostas para suprir suas necessidades.</p>
+                  <p>
+                    Nossos Especialistas vão analisar o seu caso e oferecer as
+                    melhores propostas para suprir suas necessidades.
+                  </p>
                 </div>
-                <div className="timeTexto">
+                <div
+                  className="timeTexto hidden"
+                  ref={(el) => elementsRef.current.push(el)}
+                >
                   <h3>Fechamento do Negócio</h3>
-                  <p>Vamos disponibilizar as melhores formas de pagamentos com prazos e valores que se adequam a sua realidade.</p>
+                  <p>
+                    Vamos disponibilizar as melhores formas de pagamentos com
+                    prazos e valores que se adequam a sua realidade.
+                  </p>
                 </div>
-                <div className="timeTexto">
+                <div
+                  className="timeTexto hidden"
+                  ref={(el) => elementsRef.current.push(el)}
+                >
                   <h3>Agora é Conosco</h3>
-                  <p>Agora é só aguardar que faremos a instalação do seu Projeto e a ligação junto a distribuidora.</p>
+                  <p>
+                    Agora é só aguardar que faremos a instalação do seu Projeto
+                    e a ligação junto a distribuidora.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
           <div className="formularioContato">
-            <form onSubmit={handleForm}>
+            <form
+              onSubmit={handleForm}
+              className="hidden"
+              ref={(el) => elementsRef.current.push(el)}
+            >
+              <h2>Orçamento Grátis</h2>
               <label>Nome</label>
               <input
                 placeholder="Nome"
                 type="text"
                 required
                 value={formData.name}
-                onChange={(e) => handleFormEdit(e, 'name')}
+                onChange={(e) => handleFormEdit(e, "name")}
                 className="inputForm"
               />
               <label>Email*</label>
@@ -184,7 +296,7 @@ function Inicial() {
                 placeholder="Escreva seu Email"
                 required
                 value={formData.email}
-                onChange={(e) => handleFormEdit(e, 'email')}
+                onChange={(e) => handleFormEdit(e, "email")}
                 className="inputForm"
               />
               <label>Telefone*</label>
@@ -193,7 +305,7 @@ function Inicial() {
                 placeholder="(DDD) Seu número de celular/Whatsapp"
                 required
                 value={formData.telefone}
-                onChange={(e) => handleFormEdit(e, 'telefone')}
+                onChange={(e) => handleFormEdit(e, "telefone")}
                 className="inputForm"
               />
               <label>Cidade*</label>
@@ -202,7 +314,7 @@ function Inicial() {
                 placeholder="Sua cidade"
                 required
                 value={formData.cidade}
-                onChange={(e) => handleFormEdit(e, 'cidade')}
+                onChange={(e) => handleFormEdit(e, "cidade")}
                 className="inputForm"
               />
               <label>Valor da Conta de Energia Elétrica*</label>
@@ -211,13 +323,67 @@ function Inicial() {
                 placeholder="Digite o valor da sua última conta"
                 required
                 value={formData.energia}
-                onChange={(e) => handleFormEdit(e, 'energia')}
+                onChange={(e) => handleFormEdit(e, "energia")}
                 className="inputForm"
               />
-              <input type="submit" value="Enviar"  className="btnSubmit" />
+              <input type="submit" value="Enviar" className="btnSubmit" />
             </form>
           </div>
         </div>
+      </div>
+
+      {/*PORCENTAGENS RENOVAVEL*/}
+      <div className="porcentagensDiv">
+        <div
+          className="imgRenovavel hidden"
+          ref={(el) => elementsRef.current.push(el)}
+        >
+          <img
+            src={renovavelImage}
+            alt="Imagem que demonstra a energia renovavel, com um sol iluminando uma planta, por conta da preservação do meio ambient"
+          />
+        </div>
+        <div
+          className="inforsRenovavel hidden"
+          ref={(el) => elementsRef.current.push(el)}
+        >
+          <p className="pRenovavel">
+            Valorizando as Soluções Ecologicamente Corretas
+          </p>
+          <h4>Nossa Empresa sempre desenvolve Projetos Sustentáveis</h4>
+          <p>
+            Pensando no Meio Ambiente e no Bem Estar das Pessoas nossa equipe de
+            Profissionais desenvolve cuidadosamente cada projeto pensando no
+            melhor aproveitamento do ecossistema nativo e sempre entregando o
+            melhor das Soluções Sustentáveis e Ecologicamente Corretas.
+          </p>
+          <div className="porcentagensNiveis">
+            <div className="porc02">
+              <h5>Ambiente Preservado</h5>
+              <div className="niveis">
+                <Porcentagem percentage={75} />
+              </div>
+            </div>
+            <div className="porc03">
+              <h5>Economia Energética</h5>
+              <div className="niveis">
+                <Porcentagem percentage={87} />
+              </div>
+            </div>
+            <div className="porc04">
+              <h5>Impacto Ambietal</h5>
+
+              <div className="niveis">
+                <Porcentagem percentage={5} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/*COMENTARIOS SOBRE A EMPRESA*/}
+
+      <div className="comenSessao">
+            <Comentario />
       </div>
     </div>
   );
