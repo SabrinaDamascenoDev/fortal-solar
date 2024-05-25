@@ -1,7 +1,12 @@
 .estrelas{
   display: flex;
   flex-direction: row;
-  gap: 5%;
+  gap: 0.5%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 3%;
+  padding-bottom: 5%;
 }
 
 .comentario{
@@ -9,30 +14,36 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 300px; /* Ajuste a altura conforme necessário */
   background-color: transparent;
   border:none;
-  color: black;
+  color: white;
   text-align: center;
- 
-
+  
 }
 
 .comentarios{
-  border: 2px solid #ff8c00;
+  width: 90%;
+  padding-left: 5%;
+  
+}
+
+.comentarioEscrito{
+  font-size: 20em;
+  width: 80%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-left: 10%;
+  padding-bottom: 3%;
+
+}
+
+.slick-prev{
+  background-color: transparent;
+  color: #ff8c00;
+
 }
 
 
 
 
-.slick-arrow:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-.next {
-  right: 10px;
-}
-
-.prev {
-  left: 10px;
-}

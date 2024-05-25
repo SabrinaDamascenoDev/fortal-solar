@@ -6,11 +6,14 @@ import fotoAbout02 from "../../images/fotoabout03.jpg";
 import Porcentagem from "../porcentagem/porcentagem";
 import renovavelImage from "../../images/renovavel.jpg";
 import Comentario from "../Comentarios/Comentario";
+import fotoProcesos from "../../images/fotoabout01.jpg"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClipboardList, faCoins, faPenRuler, faSolarPanel } from '@fortawesome/free-solid-svg-icons';
+
 
 function Inicial() {
   //scroll efecct
   const elementsRef = useRef([]);
-
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -24,23 +27,18 @@ function Inicial() {
       });
     });
     
-
     const currentElements = elementsRef.current;
-
     currentElements.forEach((el) => {
       if (el) observer.observe(el);
     });
-
     return () => {
       currentElements.forEach((el) => {
         if (el) observer.unobserve(el);
       });
     };
   }, []);
-  
- 
-  //enviar para a api
 
+  //enviar para a api
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -61,7 +59,6 @@ function Inicial() {
     try {
       const formDataString = `{"dadosCliente": "nome: ${formData.name}\\n email: ${formData.email}\\n telefone: ${formData.telefone}\\n cidade: ${formData.cidade}\\n Conta de energia: ${formData.energia}"}`;
 
-      // Enviar os dados para a API
       const response = await fetch(
         "https://emailleadfortalsolar-production.up.railway.app/envia-email/lead",
         {
@@ -72,7 +69,6 @@ function Inicial() {
           body: formDataString,
         }
       );
-
       // Verificar se a solicitação foi bem-sucedida
       if (response.ok) {
         console.log("Formulário enviado com sucesso!");
@@ -86,7 +82,6 @@ function Inicial() {
 
   const [porcentagem, setPorcentagem] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
-
   const ref = useRef(null);
 
   useEffect(() => {
@@ -113,7 +108,6 @@ function Inicial() {
 
   useEffect(() => {
     if (!isVisible) return;
-
     const targetPorcentagem = 100; // Número total de projetos
     const interval = setInterval(() => {
       setPorcentagem((prevCounter) => {
@@ -331,6 +325,7 @@ function Inicial() {
           </div>
         </div>
       </div>
+        
 
       {/*PORCENTAGENS RENOVAVEL*/}
       <div className="porcentagensDiv">
@@ -380,11 +375,53 @@ function Inicial() {
           </div>
         </div>
       </div>
+      {/*PROCESSOS*/}
+      <div className="sessaoProcessos">
+      
+        <div className="inforsProcessos">
+              <p className="inforPProcessos">Experiência e Confiabilidade ao Seu Dispor</p>
+              <h2>Conheça Nossos Processos</h2>
+              <div className="processos">
+                <div className="processo hidden" ref={(el) => elementsRef.current.push(el)}>
+                    <FontAwesomeIcon icon={faClipboardList} color="#ff8c00" className="iconsProcessos"/>
+                    <p className="titleProcessos">Consultoria do Projeto</p>
+                    <p className="descricaoProcessos">Desenvolvemos soluções customizadas para atender às necessidades específicas de cada cliente, desde residências até empreendimentos comerciais.</p>
+                </div>
+                <div className="processo hidden" ref={(el) => elementsRef.current.push(el)}>
+                    <FontAwesomeIcon icon={faPenRuler} color="#ff8c00" className="iconsProcessos"/>
+                    <p className="titleProcessos">Instalação do Sistema</p>
+                    <p className="descricaoProcessos">Nosso processo de instalação dos equipamentos fotovoltaicos, assegura uma transição suave para uma fonte de energia limpa e sustentável.</p>
+                </div>
+                <div className="processo hidden" ref={(el) => elementsRef.current.push(el)}>
+                    <FontAwesomeIcon icon={faCoins} color="#ff8c00" className="iconsProcessos"/>
+                    <p className="titleProcessos">Execução do Projeto</p>
+                    <p className="descricaoProcessos">Nossa abordagem envolve a criação de esquemas detalhados e a implementação de sistemas eficientes, visando maximizar a geração de energia solar.</p>
+                </div>
+                <div className="processo hidden" ref={(el) => elementsRef.current.push(el)}>
+                  <FontAwesomeIcon icon={faSolarPanel} color="#ff8c00" className="iconsProcessos"/>
+                  <p className="titleProcessos">Projeto Pronto</p>
+                    <p className="descricaoProcessos">Oferecemos suporte durante todo o ciclo, desde a elaboração até a operação plena do sistema fotovoltaico, garantindo eficiência energética e redução de custos para nossos clientes.</p>
+                </div>
+              </div>
+        </div>
+      
+
+    </div>
+    
       {/*COMENTARIOS SOBRE A EMPRESA*/}
 
       <div className="comenSessao">
-            <Comentario />
+            <div className="informaçõesDosComenarios hidden"  ref={(el) => elementsRef.current.push(el)}>
+            <p className="comenInicial">Comentários dos Clientes</p>
+            <h2>Casos de Sucesso</h2>
+            </div>
+            <div classname="hidden"  ref={(el) => elementsRef.current.push(el)}>
+                <Comentario  />
+            </div>
       </div>
+
+      {/*RODAPE*/}
+ 
     </div>
   );
 }

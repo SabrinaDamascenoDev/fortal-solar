@@ -7,12 +7,12 @@ function Header() {
   return (
     <div className='header'>
         <div className='contactHeader'>
-            <p style={{fontSize: 13}}>Atendimento de Segunda á Sexta das 8:00 hs às 18:00 hs </p>
+            <p style={{fontSize: "100%"}}>Atendimento de Segunda á Sexta das 8:00 hs às 18:00 hs </p>
 
             <div className='iconsInicias'>
-                <li><FaFacebook className='iconHeader' size={20}/></li>
-                <li><FaInstagram  className='iconHeader' size={20} /></li>
-                <li><FaYoutube className='iconHeader'  size={20}  /></li>
+                <li><FaFacebook className='iconHeader' /></li>
+                <li><FaInstagram  className='iconHeader'  /></li>
+                <li><FaYoutube className='iconHeader'   /></li>
             </div>
         </div>
 
@@ -20,11 +20,11 @@ function Header() {
             <img src={logo} alt='Logo' className='logoHeader'/>
             <div className='inforsHeader'>
                 <div className='inforHeader'>
-                    <FaMapMarkerAlt size={30} color="#ff8c00" className='iconHeaderHead'/>
+                    <FaMapMarkerAlt color="#ff8c00" className='iconHeaderHead'/>
                     <p>Fortaleza-Ceará</p>
                 </div>
                 <div className='inforHeader'>
-                    <FaPhone size={30} color="#ff8c00" className='iconHeaderHead'/>
+                    <FaPhone  color="#ff8c00" className='iconHeaderHead'/>
                     <p>85 3063-9883</p>
                 </div>
             </div>
