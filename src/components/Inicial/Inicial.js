@@ -6,31 +6,32 @@ import fotoAbout02 from "../../images/fotoabout03.jpg";
 import Porcentagem from "../porcentagem/porcentagem";
 import renovavelImage from "../../images/renovavel.jpg";
 import Comentario from "../Comentarios/Comentario";
-import fotoProcesos from "../../images/fotoabout01.jpg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboardList, faCoins, faPenRuler, faSolarPanel } from '@fortawesome/free-solid-svg-icons';
+import Rodape from "../Rodape/Rodape";
 
 
 function Inicial() {
   //scroll efecct
   const elementsRef = useRef([]);
+  const shownElements = useRef(new Set());
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          entry.target.classList.remove("hidden");
-        } else {
-          entry.target.classList.remove("show");
-          entry.target.classList.add("hidden");
+        if (entry.isIntersecting && !shownElements.current.has(entry.target)) {
+          entry.target.classList.add('show');
+          entry.target.classList.remove('hidden');
+          shownElements.current.add(entry.target);
         }
       });
     });
-    
+
     const currentElements = elementsRef.current;
     currentElements.forEach((el) => {
       if (el) observer.observe(el);
     });
+
     return () => {
       currentElements.forEach((el) => {
         if (el) observer.unobserve(el);
@@ -125,7 +126,7 @@ function Inicial() {
 
 
   return (
-    <div className="inicial hidden" ref={(el) => elementsRef.current.push(el)}>
+    <div className="inicial hidden"  ref={(el) => (elementsRef.current[0] = el)}>
       <Header />
       <div className="container">
         <div className="inicio">
@@ -152,7 +153,7 @@ function Inicial() {
       <div className="aboutInicio">
         <div
           className="aboutDescription hidden"
-          ref={(el) => elementsRef.current.push(el)}
+          ref={(el) => (elementsRef.current[1] = el)}
         >
           <p className="beforeTitleAbout">Sobre a empresa</p>
           <p className="titleAbout">
@@ -421,7 +422,9 @@ function Inicial() {
       </div>
 
       {/*RODAPE*/}
- 
+      <div className="hidden"  ref={(el) => elementsRef.current.push(el)}>
+        <Rodape />
+      </div>
     </div>
   );
 }

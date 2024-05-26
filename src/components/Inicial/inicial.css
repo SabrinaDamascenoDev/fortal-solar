@@ -32,6 +32,7 @@
   flex-direction: row;
   gap: 2%;
   padding-top: 1.5%;
+  
 }
 
 .style01bnt {
@@ -41,6 +42,7 @@
   font-weight: 500;
   font-size: 85%;
   border: 1px solid transparent;
+  border-radius: 5px;
 }
 
 .style01bnt:hover {
@@ -54,6 +56,7 @@
   color: #ff8c00;
   font-size: 85%;
   border: 1px solid #ff8c00;
+  border-radius: 5px;
 }
 
 .style02bnt:hover {
@@ -117,6 +120,7 @@
   width: 50%;
   height: 9%;
   margin-top: 12em;
+  border-radius: 5px;
 }
 
 .botaoStyleAbout:hover {
@@ -193,6 +197,7 @@
   flex-direction: column;
   border: #ff8c00 1px solid;
   padding: 10%;
+
 }
 
 .formularioContato form h2 {
@@ -204,6 +209,7 @@
   padding: 4%;
   border: #ff8c00 solid 1px;
   background-color: white;
+  border-radius: 5px;
 }
 
 .formularioContato form label {
@@ -226,6 +232,7 @@
   padding: 5%;
   cursor: pointer;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 .btnSubmit:hover{

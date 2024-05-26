@@ -1,0 +1,194 @@
+
+
+.containerRodape{
+    background-color:  #333333;
+    color:gainsboro;
+
+}
+
+.inforsRodape{
+    padding-top: 6%;
+    padding-bottom: 3%;
+    padding-right: 6%;
+    padding-left: 6%;
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+
+}
+.iconRodape{
+    color: gainsboro;
+    font-size: 170%;
+}
+
+.iconRodape:hover{
+    color: #ff8c00;
+    cursor: pointer;
+    transition: 0.6s;
+}
+
+.redesRodape{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    padding-right: 4%;
+
+
+}
+
+.redesRodape li{
+    list-style: none;
+}
+
+.logoRodape{
+    width: 60%;
+
+}
+
+.copyright{
+    font-size: 80%;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-bottom: 1%;
+    border-top: gray 1px solid;
+    width: 85%;
+    margin-left: 7%;
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
+}
+
+.titleRodape{
+    font-size: 100%;
+    font-weight: 500;
+}
+
+.newsLetter{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.rapidosLinks{
+    padding-top: 0.8%;
+    width: 10em;
+    padding-right: 10%;
+
+}
+
+.inforsP{
+    font-size: 80%;
+    padding-top: 5%;
+    color:  gray;
+}
+
+.rapidosLinks .inforsP{
+    font-size: 90%;
+    padding-top: 7%;
+}
+
+.rapidosLinks .inforsP:hover{
+    cursor: pointer;
+    color: #ff8c00;
+    transition: 0.4s;
+}
+.decriptionLetter{
+    font-size: 90%;
+    color:  gray;   
+}
+
+.decriptionLogo{
+    font-size: 80%;
+    color:  gray;   
+    width: 80%;
+    padding-left: 4%;
+
+}
+
+.formRodape{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1%;
+    gap: 3%;
+}
+
+.formRodape input{
+    padding: 4%;
+    margin-top: 2%;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    
+
+}
+
+.btnRodape{
+    background-color: #ff8c00;
+    color: ghostwhite;
+    border: 1px solid transparent;
+   
+}
+
+.btnRodape:hover{
+    background-color: transparent;
+    color: #ff8c00;
+    border: 1px solid #ff8c00;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.princLinks{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    margin-right: 5%
+}
+
+.redesLogo{
+    width: 70%;
+}
+
+.informacoesGerais{
+    width: 50%;
+}
+
+@media (max-width: 767px) {
+    .inforsRodape{
+       padding-top: 15%;
+        flex-direction: column;
+        gap: 3%;
+    
+    }
+    .redesLogo{
+        width: 100%;
+        padding-bottom: 10%;
+    }
+    .princLinks{
+        padding-left: 3%;
+        gap: 5%;
+  
+    }
+
+    .newsLetter{
+        width: 100%;
+        padding-top: 10%;
+        padding-bottom: 10%;
+       
+    }
+
+    .copyright{
+        font-size: 70%;
+        padding-top: 5%;
+        padding-left: 2%;
+        padding-bottom: 3%;
+        margin-left: 5%;
+    
+    
+    }
+    
+    
+
+}
