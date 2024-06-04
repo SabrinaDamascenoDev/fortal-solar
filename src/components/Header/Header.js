@@ -3,7 +3,10 @@ import { FaFacebook, FaInstagram, FaYoutube, FaMapMarkerAlt, FaPhone } from 'rea
 import logo from "../../images/fortal.png"
 import './header.css'
 
+
 function Header() {
+
+    
   return (
     <div className='header'>
         <div className='contactHeader'>

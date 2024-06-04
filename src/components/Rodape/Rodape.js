@@ -1,9 +1,49 @@
 import React from "react";
+import  { useState } from "react";
 import logo from "../../images/fortal.png";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import "./rodape.css";
 
 function Rodape() {
+
+  const [formDataRodape, setFormDataRodape] = useState({
+    email: "",
+  });
+
+  const handleFormEditRodape = (event, name) => {
+    setFormDataRodape({
+      ...formDataRodape,
+      [name]: event.target.value,
+    });
+  };
+
+  const handleFormRodape = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch(
+        "https://emailleadfortalsolar.onrender.com/newsletter/cadastrar",
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: formDataRodape.email,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Formulário enviado com sucesso!");
+      } else {
+        console.error("Erro ao enviar o formulário");
+      }
+    } catch (error) {
+      console.error("Erro de rede ou outro erro:", error);
+    }
+  };
+
+
   return (
     <div className="containerRodape">
       <div className="inforsRodape">
@@ -41,10 +81,19 @@ function Rodape() {
             Energia Renovável.
           </p>
          
-          <form className="formRodape">
-            <input type="email" placeholder="Digite seu email aqui" />
-            <input type="submit" className="btnRodape"/>
-          </form>
+          <form className="formRodape" onSubmit={handleFormRodape}>
+          <input 
+            type="email" 
+            placeholder="Digite seu email aqui" 
+            value={formDataRodape.email}
+            onChange={(e) => handleFormEditRodape(e, "email")}
+          />
+          <input 
+            type="submit" 
+            className="btnRodape"
+          />
+        </form>
+
        </div>
       </div>
       <div className="copyright">

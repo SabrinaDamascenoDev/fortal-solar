@@ -1,15 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./inicial.css";
-import Header from "../Header/Header";
 import { ReactTyped as Typed } from "react-typed";
-import fotoAbout02 from "../../images/fotoabout03.jpg";
+
+//Components
+import Rodape from "../Rodape/Rodape";
+import Header from "../Header/Header";
 import Porcentagem from "../porcentagem/porcentagem";
-import renovavelImage from "../../images/renovavel.jpg";
 import Comentario from "../Comentarios/Comentario";
+
+
+import fotoAbout02 from "../../images/fotoabout03.jpg";
+
+import renovavelImage from "../../images/renovavel.jpg";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboardList, faCoins, faPenRuler, faSolarPanel } from '@fortawesome/free-solid-svg-icons';
-import Rodape from "../Rodape/Rodape";
 
+import "./inicial.css";
 
 function Inicial() {
   //scroll efecct
